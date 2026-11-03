@@ -8,10 +8,15 @@
 </head>
 <body>
 
+  <!-- Уведомления -->
+  <div id="toast" class="toast">Уведомление</div>
+
   <header class="topbar">
     <div class="logo">⚙️ ServiceCenter CRM</div>
     <div class="actions">
-      <button class="btn btn-outline" onclick="downloadData()">⬇️ Скачать базу (JSON)</button>
+      <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
+      <button class="btn btn-outline" onclick="document.getElementById('import-file').click()">⬆️ Загрузить базу</button>
+      <button class="btn btn-outline" onclick="downloadData()">⬇️ Скачать базу</button>
     </div>
   </header>
 
@@ -70,7 +75,7 @@
       <section class="panel">
         <div class="panel-header">
           <h2>Список заявок</h2>
-          <input type="text" id="search" placeholder="🔍 Поиск по клиенту..." oninput="render()">
+          <input type="text" id="search" placeholder="🔍 Поиск..." oninput="render()">
         </div>
         
         <div class="table-wrap">
@@ -90,6 +95,26 @@
       </section>
     </div>
   </main>
+
+  <!-- Модальное окно редактирования -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <h2>Редактировать заявку</h2>
+      <input type="hidden" id="edit-id">
+      <div class="input-group">
+        <label>Клиент</label>
+        <input type="text" id="edit-client">
+      </div>
+      <div class="input-group">
+        <label>Описание</label>
+        <textarea id="edit-desc" rows="3"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal()">Отмена</button>
+        <button class="btn btn-primary" onclick="saveEdit()">Сохранить</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
