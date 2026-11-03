@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8"> <!-- ВОТ ЭТА СТРОКА ЛЕЧИТ КРАКОЗЯБРЫ -->
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRM | Сервисный центр</title>
   <link rel="stylesheet" href="style.css">
@@ -14,14 +14,16 @@
   <header class="topbar">
     <div class="logo">⚙️ ServiceCenter CRM</div>
     <div class="actions">
+      <button class="btn btn-outline" onclick="switchTab('main')">🏠 Главная</button>
+      <button class="btn btn-outline" onclick="switchTab('help')">📖 Руководство</button>
       <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
       <button class="btn btn-outline" onclick="document.getElementById('import-file').click()">⬆️ Загрузить базу</button>
       <button class="btn btn-outline" onclick="downloadData()">⬇️ Скачать базу</button>
     </div>
   </header>
 
-  <main class="container">
-    
+  <!-- ВКЛАДКА 1: ГЛАВНАЯ -->
+  <main class="container" id="tab-main">
     <!-- Статистика -->
     <section class="stats">
       <div class="stat-card">
@@ -95,6 +97,48 @@
       </section>
     </div>
   </main>
+
+  <!-- ВКЛАДКА 2: РУКОВОДСТВО -->
+  <main class="container" id="tab-help" style="display: none;">
+    <section class="panel" style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
+      <h1>📖 Руководство пользователя</h1>
+      <p style="color: #666; margin-bottom: 20px;">Информационная система учёта заявок сервисного центра.</p>
+
+      <h3>1. Как добавить заявку?</h3>
+      <p>Перейдите на вкладку <b>«Главная»</b>. В левой части экрана заполните поля:</p>
+      <ul>
+        <li><b>Клиент:</b> укажите ФИО клиента (например, Иванов Иван).</li>
+        <li><b>Телефон:</b> контактный номер (необязательно).</li>
+        <li><b>Описание неисправности:</b> напишите, что случилось с устройством.</li>
+        <li><b>Услуга:</b> выберите подходящую услугу из списка.</li>
+      </ul>
+      <p>Нажмите кнопку <b>«Добавить заявку»</b>. Заявка появится в таблице справа, а статистика сверху обновится.</p>
+
+      <h3>2. Как изменить статус?</h3>
+      <p>В таблице заявок найдите нужную строку и нажмите кнопку <b>🔄</b>. Статус изменится по кругу: <i>«Новая» → «В работе» → «Выполнена» → «Новая»</i>. Цвет бейджа тоже поменяется.</p>
+
+      <h3>3. Как отредактировать или удалить?</h3>
+      <p>Нажмите <b>✏️</b>, чтобы открыть окно редактирования (можно изменить имя клиента или описание). Нажмите <b>❌</b>, чтобы удалить заявку (появится окно подтверждения).</p>
+
+      <h3>4. Как сохранить данные?</h3>
+      <p>Ваши заявки автоматически сохраняются в браузере (localStorage) — они не пропадут при перезагрузке страницы.</p>
+      <p>Если вы хотите перенести данные на другой компьютер:</p>
+      <ul>
+        <li>Нажмите <b>⬇️ Скачать базу</b> в шапке сайта. Скачается файл <code>zayavki_backup.json</code>.</li>
+        <li>На другом компьютере откройте сайт и нажмите <b>⬆️ Загрузить базу</b>, выберите этот файл. Все заявки восстановятся!</li>
+      </ul>
+
+      <h3>5. Поиск</h3>
+      <p>Введите имя клиента или слово из описания в поле <b>«🔍 Поиск...»</b> над таблицей. Список мгновенно отфильтруется.</p>
+    </section>
+  </main>
+
+  <!-- ПОДВАЛ САЙТА С ВАШИМИ ДАННЫМИ -->
+  <footer style="text-align: center; padding: 30px; color: #888; font-size: 14px; margin-top: 40px;">
+    <p>© 2026 Информационная система «Сервисный центр»</p>
+    <p>Разработал: <b>Городов Александр Сергеевич</b>, группа <b>ИС-3</b></p>
+    <p>Производственная практика ПП.03.01</p>
+  </footer>
 
   <!-- Модальное окно редактирования -->
   <div id="edit-modal" class="modal">
