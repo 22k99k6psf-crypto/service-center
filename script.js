@@ -161,6 +161,7 @@ function importData(event) {
   event.target.value = ''; 
 }
 
-// Запуск
-updateStats();
-render();
+window.onload = function() {
+  updateStats();
+  render();
+};
