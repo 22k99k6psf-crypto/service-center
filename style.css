@@ -82,6 +82,40 @@ tr:hover { background: #f9fafb; }
 .action-btn { background: none; border: none; cursor: pointer; font-size: 16px; margin-right: 8px; opacity: 0.7; transition: 0.2s; }
 .action-btn:hover { opacity: 1; transform: scale(1.2); }
 
+/* --- ИСПРАВЛЕННОЕ МОДАЛЬНОЕ ОКНО --- */
+.modal {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: center;
+}
+.modal.active { display: flex; }
+.modal-content {
+  background: white; padding: 30px; border-radius: 12px; width: 400px;
+  animation: slideDown 0.3s ease;
+}
+@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+.modal-actions .btn { flex: 1; }
+
+/* --- ИСПРАВЛЕННОЕ УВЕДОМЛЕНИЕ --- */
+.toast {
+  position: fixed; bottom: 30px; right: 30px; background: #10b981; color: white;
+  padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  opacity: 0; transform: translateY(20px); transition: 0.3s; z-index: 999; pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.error { background: #ef4444; }
+tr:hover { background: #f9fafb; }
+
+/* Статусы */
+.badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge.new { background: #fef3c7; color: #b45309; }
+.badge.work { background: #dbeafe; color: #1d4ed8; }
+.badge.done { background: #d1fae5; color: #047857; }
+
+/* Кнопки в таблице */
+.action-btn { background: none; border: none; cursor: pointer; font-size: 16px; margin-right: 8px; opacity: 0.7; transition: 0.2s; }
+.action-btn:hover { opacity: 1; transform: scale(1.2); }
+
 /* Модальное окно */
 .modal {
   display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
