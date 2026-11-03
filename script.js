@@ -1,5 +1,11 @@
 let requests = JSON.parse(localStorage.getItem('requests') || '[]');
 
+// Переключение вкладок
+function switchTab(tab) {
+  document.getElementById('tab-main').style.display = tab === 'main' ? 'block' : 'none';
+  document.getElementById('tab-help').style.display = tab === 'help' ? 'block' : 'none';
+}
+
 // Уведомления
 function showToast(msg, isError = false) {
   const toast = document.getElementById('toast');
@@ -152,7 +158,7 @@ function importData(event) {
     }
   };
   reader.readAsText(file);
-  event.target.value = ''; // сброс инпута
+  event.target.value = ''; 
 }
 
 // Запуск
